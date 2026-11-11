@@ -13,19 +13,12 @@ import adminRoutes from './routes/admin.routes.js';
 
 const app = express();
 
-<<<<<<< HEAD
-=======
 // Allowed origins configuration (FRONTEND_URL admite varios separados por coma)
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 const origenesLocales = [
   'http://localhost:3000',
   'http://localhost:5173',
   'http://localhost:5174',
-<<<<<<< HEAD
   'http://127.0.0.1:5173',
-=======
-  'http://127.0.0.1:5173'
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 ];
 
 function obtenerOrigenesPermitidos() {
@@ -46,10 +39,7 @@ function obtenerOrigenesPermitidos() {
 app.use(
   cors({
     origin: (origin, callback) => {
-<<<<<<< HEAD
-=======
       // Allow requests with no origin (like mobile apps, curl, or Postman)
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
       if (!origin) return callback(null, true);
 
       const limpio = origin.replace(/\/+$/, '');
@@ -77,10 +67,7 @@ app.get('/', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-=======
 // API health endpoint
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 const ESTADOS_DB = ['disconnected', 'connected', 'connecting', 'disconnecting'];
 
 app.get('/api/health', (req, res) => {
@@ -94,14 +81,10 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-app.use('/api/auth', authRoutes);
-=======
 // Auth routes
 app.use('/api/auth', authRoutes);
 
 // Application routes
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 app.use('/api/items', itemsRoutes);
 app.use('/api/categories', categoriesRoutes);
 app.use('/api/users', usersRoutes);
@@ -111,18 +94,11 @@ app.use('/api/stats', statsRoutes);
 app.use('/api/intercambios', intercambiosRoutes);
 app.use('/api/admin', adminRoutes);
 
-<<<<<<< HEAD
-app.use((req, res) => {
-  res.status(404).json({
-    error: 'Not Found',
-    mensaje: `No existe la ruta ${req.method} ${req.originalUrl}`,
-=======
 // 404 Handler
 app.use((req, res) => {
   res.status(404).json({
     error: 'Not Found',
-    mensaje: `No existe la ruta ${req.method} ${req.originalUrl}`
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
+    mensaje: `No existe la ruta ${req.method} ${req.originalUrl}`,
   });
 });
 
@@ -130,11 +106,7 @@ app.use((err, req, res, next) => {
   if (err.type === 'entity.too.large') {
     return res.status(413).json({
       error: 'Payload Too Large',
-<<<<<<< HEAD
       mensaje: 'El contenido enviado es demasiado grande.',
-=======
-      mensaje: 'El contenido enviado es demasiado grande.'
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
     });
   }
 
@@ -146,22 +118,14 @@ app.use((err, req, res, next) => {
     return res.status(400).json({
       error: 'Validation Error',
       mensaje: 'Revisa los datos enviados.',
-<<<<<<< HEAD
       errores,
-=======
-      errores
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
     });
   }
 
   if (err.name === 'CastError') {
     return res.status(400).json({
       error: 'Invalid Identifier',
-<<<<<<< HEAD
       mensaje: 'El identificador enviado no es válido.',
-=======
-      mensaje: 'El identificador enviado no es válido.'
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
     });
   }
 
@@ -172,22 +136,14 @@ app.use((err, req, res, next) => {
       mensaje: campo === 'email'
         ? 'Ya existe una cuenta con este correo.'
         : 'Ese nombre de usuario ya está en uso.',
-<<<<<<< HEAD
       errores: campo ? { [campo]: 'Este valor ya está registrado.' } : undefined,
-=======
-      errores: campo ? { [campo]: 'Este valor ya está registrado.' } : undefined
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
     });
   }
 
   console.error('[Server Error]:', err.stack || err.message);
   res.status(err.status || 500).json({
     error: 'Internal Server Error',
-<<<<<<< HEAD
     mensaje: err.message || 'Ocurrió un error inesperado en el servidor.',
-=======
-    mensaje: err.message || 'Ocurrió un error inesperado en el servidor.'
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
   });
 });
 

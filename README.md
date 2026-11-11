@@ -13,22 +13,11 @@ Backend API para la plataforma Truex Trade desarrollado con **Node.js**, **Expre
 npm install
 ```
 
-## Variables de entorno
-
-<<<<<<< HEAD
-Crea un `.env` en la raíz usando [`.env.example`](.env.example) como referencia:
-=======
-2. Instala las dependencias:
-   ```bash
-   npm install
-   ```
-
 ---
 
 ## ⚙️ Variables de Entorno
 
 Crea un archivo `.env` en la raíz del proyecto usando [`.env.example`](.env.example) como referencia:
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 
 ```env
 PORT=5000
@@ -46,21 +35,11 @@ ADMIN_UBICACION=Pasto, Nariño
 ```
 
 > El servidor no arranca si faltan `MONGODB_URI` o `JWT_SECRET`.
-<<<<<<< HEAD
-=======
 
 ---
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 
-## Scripts
+## 🛠️ Scripts
 
-<<<<<<< HEAD
-```bash
-npm run dev        # desarrollo con nodemon
-npm start          # producción
-npm run seed:admin # crea/actualiza el administrador
-```
-=======
 - **Modo desarrollo (con recarga automática):**
   ```bash
   npm run dev
@@ -74,23 +53,12 @@ npm run seed:admin # crea/actualiza el administrador
   npm run seed:admin
   ```
   Usa las variables `ADMIN_*` del `.env`. Si el correo ya existe, actualiza sus datos, su contraseña y lo marca como `admin` y `verificado`.
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 
 ## Estructura
 
 ```text
 truex-trade-backend/
 ├── src/
-<<<<<<< HEAD
-│   ├── config/db.js
-│   ├── controllers/       # auth, items, users, messages, notifications,
-│   │                      # intercambios, admin, stats, categories
-│   ├── middlewares/auth.middleware.js
-│   ├── models/            # Usuario, Item, Intercambio, Mensaje, Notificacion
-│   ├── routes/            # /api/*
-│   ├── scripts/seedAdmin.js
-│   ├── utils/             # constants, serializers
-=======
 │   ├── config/
 │   │   └── db.js                  # Conexión a MongoDB
 │   ├── controllers/
@@ -117,7 +85,6 @@ truex-trade-backend/
 │   ├── utils/
 │   │   ├── constants.js
 │   │   └── serializers.js
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 │   ├── app.js
 │   └── server.js
 ├── .env.example
@@ -125,17 +92,10 @@ truex-trade-backend/
 └── README.md
 ```
 
-## Endpoints
-
-<<<<<<< HEAD
-### Salud
-
-=======
 ## 🌐 Endpoints
 
 ### Salud
 
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 | Método | Endpoint | Acceso |
 | ------ | -------- | ------ |
 | `GET` | `/` | Público |
@@ -154,76 +114,44 @@ truex-trade-backend/
 | Método | Endpoint | Descripción | Acceso |
 | ------ | -------- | ----------- | ------ |
 | `GET` | `/api/items` | Lista con `buscar`, `categoria`, `tipo`, `ubicacion`, `pagina`, `limite`, `orden` | Público |
-<<<<<<< HEAD
-| `GET` | `/api/items/:id` | Detalle | Público |
-=======
 | `GET` | `/api/items/:id` | Detalle del artículo | Público |
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 | `GET` | `/api/items/user/:userId` | Artículos de un usuario | Público |
 | `GET` | `/api/items/favoritos` | Favoritos del usuario | Bearer |
 | `POST` | `/api/items` | Publica un artículo | Bearer |
 | `PUT` | `/api/items/:id` | Edita (propietario o admin) | Bearer |
-<<<<<<< HEAD
-| `DELETE` | `/api/items/:id` | Elimina lógicamente | Bearer |
-=======
 | `DELETE` | `/api/items/:id` | Elimina lógicamente (propietario o admin) | Bearer |
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 | `POST` | `/api/items/:id/favorite` | Alterna favorito | Bearer |
 
 ### Categorías y estadísticas
 
-<<<<<<< HEAD
-| Método | Endpoint | Acceso |
-| ------ | -------- | ------ |
-| `GET` | `/api/categories` | Público |
-| `GET` | `/api/stats` | Público |
-=======
 | Método | Endpoint | Descripción | Acceso |
 | ------ | -------- | ----------- | ------ |
 | `GET` | `/api/categories` | Categorías con id, nombre e ícono | Público |
 | `GET` | `/api/stats` | Usuarios, publicaciones, intercambios y calificación promedio | Público |
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 
 ### Usuarios
 
 | Método | Endpoint | Descripción | Acceso |
 | ------ | -------- | ----------- | ------ |
 | `GET` | `/api/users/:id` | Perfil público | Público |
-<<<<<<< HEAD
-| `PATCH` | `/api/users/me` | Actualiza perfil | Bearer |
-=======
 | `PATCH` | `/api/users/me` | Actualiza nombre, username, ubicación o avatar | Bearer |
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 
 ### Mensajes
 
 | Método | Endpoint | Descripción | Acceso |
 | ------ | -------- | ----------- | ------ |
-<<<<<<< HEAD
-| `GET` | `/api/messages` | Conversaciones | Bearer |
-| `GET` | `/api/messages/:usuarioId` | Historial | Bearer |
-| `POST` | `/api/messages/:usuarioId` | Envía mensaje | Bearer |
-=======
 | `GET` | `/api/messages` | Conversaciones con último mensaje y no leídos | Bearer |
 | `GET` | `/api/messages/:usuarioId` | Historial y marcado como leído | Bearer |
 | `POST` | `/api/messages/:usuarioId` | Envía un mensaje | Bearer |
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 
 ### Notificaciones
 
 | Método | Endpoint | Descripción | Acceso |
 | ------ | -------- | ----------- | ------ |
-<<<<<<< HEAD
-| `GET` | `/api/notifications` | Últimas 50 y no leídas | Bearer |
-| `PATCH` | `/api/notifications/leer-todas` | Marca todas | Bearer |
-| `PATCH` | `/api/notifications/:id/leer` | Marca una | Bearer |
-| `DELETE` | `/api/notifications/:id` | Elimina | Bearer |
-=======
 | `GET` | `/api/notifications` | Últimas 50 y contador de no leídas | Bearer |
 | `PATCH` | `/api/notifications/leer-todas` | Marca todas como leídas | Bearer |
 | `PATCH` | `/api/notifications/:id/leer` | Marca una como leída | Bearer |
 | `DELETE` | `/api/notifications/:id` | Elimina una notificación | Bearer |
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 
 ### Intercambios
 
@@ -238,13 +166,6 @@ truex-trade-backend/
 | Método | Endpoint | Descripción | Acceso |
 | ------ | -------- | ----------- | ------ |
 | `GET` | `/api/admin/usuarios` | Lista con `buscar`, `rol`, `pagina`, `limite` | Admin |
-<<<<<<< HEAD
-| `PATCH` | `/api/admin/usuarios/:id/rol` | Cambia rol | Admin |
-| `DELETE` | `/api/admin/usuarios/:id` | Elimina usuario | Admin |
-| `GET` | `/api/admin/estadisticas` | Métricas generales | Admin |
-
-## Autenticación
-=======
 | `PATCH` | `/api/admin/usuarios/:id/rol` | Cambia entre `usuario` y `admin` | Admin |
 | `DELETE` | `/api/admin/usuarios/:id` | Elimina usuario y desactiva sus artículos | Admin |
 | `GET` | `/api/admin/estadisticas` | Métricas generales | Admin |
@@ -252,7 +173,6 @@ truex-trade-backend/
 ---
 
 ## 🔐 Autenticación y roles
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 
 Los endpoints protegidos esperan:
 
@@ -260,13 +180,6 @@ Los endpoints protegidos esperan:
 Authorization: Bearer <jwt>
 ```
 
-<<<<<<< HEAD
-El rol se consulta siempre desde la base de datos. Errores: `{ "mensaje": "..." }` y, cuando aplica, `{ "errores": { campo: "..." } }`.
-
-## Conexión con el frontend
-
-En `TruexTradeFronted` crea un `.env` con:
-=======
 El token incluye el `sub` del usuario. El rol (`usuario` o `admin`) se consulta siempre desde la base de datos, no desde el token. Los errores usan `{ "mensaje": "..." }` y, cuando aplica, `{ "errores": { campo: "..." } }`.
 
 ### Ejemplo de registro
@@ -312,15 +225,12 @@ El token incluye el `sub` del usuario. El rol (`usuario` o `admin`) se consulta 
 ## 🔌 Conexión con el frontend
 
 En `TruexTradeFronted` crea un archivo `.env` con:
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
 
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
 Sin esa variable el frontend usa sus mocks locales de `localStorage`.
-<<<<<<< HEAD
-=======
 
 ---
 
@@ -336,4 +246,3 @@ npm run seed:admin
 # Levantar el servidor
 npm run dev
 ```
->>>>>>> 6abd29a967d4370a867b095f3ec7a61fb4af784f
