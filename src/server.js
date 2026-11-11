@@ -1,13 +1,19 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 
 import app from './app.js';
 import { connectDB } from './config/db.js';
 
 const PORT = process.env.PORT || 5000;
 
+const variablesRequeridas = ['MONGODB_URI', 'JWT_SECRET'];
+const variablesFaltantes = variablesRequeridas.filter((clave) => !process.env[clave]);
+
+if (variablesFaltantes.length > 0) {
+  console.error(`[Config] Faltan variables de entorno: ${variablesFaltantes.join(', ')}`);
+  process.exit(1);
+}
+
 const startServer = async () => {
-  // Connect to Database
   await connectDB();
 
   const server = app.listen(PORT, () => {
@@ -15,7 +21,6 @@ const startServer = async () => {
     console.log(`[Environment] Node: ${process.version} | Mode: ${process.env.NODE_ENV || 'development'}`);
   });
 
-  // Graceful shutdown handling
   const gracefulShutdown = (signal) => {
     console.log(`\n[Server] Received ${signal}. Closing HTTP server and database connection...`);
     server.close(() => {
